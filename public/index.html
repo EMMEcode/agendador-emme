@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendar Cita - Clínica Dr. Emme</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Agenda tu Cita</h1>
+    <p>Centro de Medicina Estética Dr. Emme</p>
+  </header>
+
+  <main>
+    <form>
+      <label for="fecha">Selecciona el día:</label>
+      <input type="date" id="fecha" name="fecha" required>
+
+      <label for="hora">Selecciona la hora:</label>
+      <select id="hora" name="hora" required>
+        <option value="">--Selecciona una hora--</option>
+        <option value="11:00">11:00 a.m.</option>
+        <option value="12:00">12:00 p.m.</option>
+        <option value="13:00">1:00 p.m.</option>
+        <option value="14:00">2:00 p.m.</option>
+        <option value="15:00">3:00 p.m.</option>
+        <option value="16:00">4:00 p.m.</option>
+        <option value="17:00">5:00 p.m.</option>
+        <option value="18:00">6:00 p.m.</option>
+        <option value="19:00">7:00 p.m.</option>
+      </select>
+
+      <button type="submit">Reservar</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Clínica Dr. Emme</p>
+  </footer>
+</body>
+</html>
