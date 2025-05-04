@@ -1,17 +1,17 @@
 {
   "name": "agendamiento-dr-emme",
   "version": "1.0.0",
+  "description": "Aplicación de agendamiento de citas médicas para la clínica Dr. Emme",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "TuNombre",
   "license": "ISC",
-  "description": "Aplicación de agendamiento de citas médicas para la clínica Dr. Emme",
   "dependencies": {
-    "express": "^5.1.0",
-    "mongoose": "^7.0.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0"
   }
 }

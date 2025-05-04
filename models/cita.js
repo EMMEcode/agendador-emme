@@ -30,7 +30,8 @@ const citaSchema = new mongoose.Schema({
     required: true
   }
 }, {
-  timestamps: true // ⏱️ agrega campos createdAt y updatedAt automáticamente
+  timestamps: true // ⏱️ Agrega createdAt y updatedAt automáticamente
 });
 
-module.exports = mongoose.model('Cita', citaSchema,'Dremme');
+// Exportamos el modelo, MongoDB usará la colección "citas" automáticamente
+module.exports = mongoose.model('Cita', citaSchema);
