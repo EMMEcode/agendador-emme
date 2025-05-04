@@ -4,15 +4,86 @@
   <meta charset="UTF-8">
   <title>Agendar Cita - Clínica Dr. Emme</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    header, footer {
+      text-align: center;
+      background-color: #0077b6;
+      color: white;
+      padding: 10px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #023e8a;
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>Agenda tu Cita</h1>
     <p>Centro de Medicina Estética Dr. Emme</p>
   </header>
 
   <main>
-    <form>
+    <form action="/reservar" method="POST">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos" required>
+
+      <label for="telefono">Número de Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{9}" placeholder="Ej. 912345678">
+
+      <label for="doctor">Selecciona el doctor:</label>
+      <select id="doctor" name="doctor" required>
+        <option value="">--Elige un doctor--</option>
+        <option value="Dremme">Dremme</option>
+        <option value="Dra. López">Dra. López</option>
+        <option value="Dr. Pérez">Dr. Pérez</option>
+      </select>
+
       <label for="fecha">Selecciona el día:</label>
       <input type="date" id="fecha" name="fecha" required>
 
@@ -37,5 +108,7 @@
   <footer>
     <p>&copy; 2025 - Clínica Dr. Emme</p>
   </footer>
+
 </body>
 </html>
+
