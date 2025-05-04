@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Carpeta pública
 
 // Ruta de prueba
 app.get('/ping', (req, res) => {
-  res.send('📡 Pong desde el servidor');
+  res.send(' Pong desde el servidor');
 });
 
 // Ruta POST para guardar la cita
@@ -50,6 +50,8 @@ mongoose.connect(process.env.MONGO_URI, {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+  module.exports = app;
+
 });
 
 
