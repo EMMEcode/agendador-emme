@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
+console.log('🧪 MONGO_URI cargado:', process.env.MONGO_URI);
+
 
 const Cita = require('./models/cita');
 const app = express();
@@ -46,5 +48,15 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('❌ Error al conectar a MongoDB:', err.message);
     process.exit(1); // Detener app si no hay conexión
   });
-
+// Ruta para consultar todas las citas (API)
+app.get('/citas', async (req, res) => {
+    try {
+      const citas = await Cita.find().sort({ createdAt: -1 });
+      res.json(citas);
+    } catch (error) {
+      console.error('❌ Error al obtener citas:', error);
+      res.status(500).send('Error al obtener citas');
+    }
+  });
+  
 module.exports = app;
