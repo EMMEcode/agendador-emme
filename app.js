@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
-const Cita = require('./models/cita'); // Modelo de Mongoose
-
+const Cita = require('./models/cita');
 const app = express();
 
 // Middlewares
@@ -19,27 +18,33 @@ app.get('/ping', (req, res) => {
 
 // Ruta POST para guardar la cita
 app.post('/reservar', async (req, res) => {
-    try {
-      const { nombre, apellidos, telefono, doctor, fecha, hora } = req.body;
-  
-      if (!nombre || !apellidos || !telefono || !doctor || !fecha || !hora) {
-        return res.status(400).send('⚠️ Todos los campos son obligatorios.');
-      }
-  
-      const nuevaCita = new Cita({ nombre, apellidos, telefono, doctor, fecha, hora });
-      await nuevaCita.save();
-  
-      res.redirect('/confirmacion.html'); // ✅ Esto sí debe estar dentro del try
-    } catch (error) {
-      console.error('❌ Error al guardar la cita:', error);
-      res.status(500).send('❌ Error interno del servidor.');
+  try {
+    console.log('📥 Datos recibidos en /reservar:', req.body);
+
+    const { nombre, apellidos, telefono, doctor, fecha, hora } = req.body;
+
+    if (!nombre || !apellidos || !telefono || !doctor || !fecha || !hora) {
+      console.warn('⚠️ Faltan campos obligatorios en el formulario');
+      return res.status(400).send('⚠️ Todos los campos son obligatorios.');
     }
-  });
-  
-// Conexión a MongoDB Atlas
+
+    const nuevaCita = new Cita({ nombre, apellidos, telefono, doctor, fecha, hora });
+    await nuevaCita.save();
+
+    console.log('✅ Cita guardada con éxito en la base de datos');
+    res.redirect('/confirmacion.html');
+  } catch (error) {
+    console.error('❌ Error al guardar la cita:', error);
+    res.status(500).send('❌ Error interno del servidor.');
+  }
+});
+
+// Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ Conectado a MongoDB Atlas'))
-  .catch((err) => console.error('❌ Error al conectar a MongoDB:', err));
+  .catch((err) => {
+    console.error('❌ Error al conectar a MongoDB:', err.message);
+    process.exit(1); // Detener app si no hay conexión
+  });
 
-// Exportar la app para usarla en server.js
-module.exports = app; // ✅ Correcto
+module.exports = app;
